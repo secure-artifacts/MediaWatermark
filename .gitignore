@@ -1,0 +1,33 @@
+__pycache__/
+*.pyc
+.idea/
+# 忽略所有文件
+*
+
+# 但保留这些类型的源码文件
+!*.py
+!*.ui
+!*.bat
+
+# 如果你有其他需要保留的文本/配置文件，也可以加上：
+!*.txt
+!*.md
+!*.ini
+!*.json
+!*.yml
+!*.yaml
+
+# 保留 Git 目录本身
+!.gitignore
+
+# 忽略常见构建/发布目录
+dist/
+build/
+*.dist/
+*.spec
+*.dist*
+
+# 忽略虚拟环境
+venv/
+.env/
+.env*/
