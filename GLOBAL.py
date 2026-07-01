@@ -45,8 +45,6 @@ if os.name == 'nt':
 else:
     LOG_FILE = os.path.join(BASE_FOLDER, "app.log")
 
-print("BASE_FOLDER:\t", BASE_FOLDER)
-
 
 def get_base_dir():
     # 打包后（exe 模式）
