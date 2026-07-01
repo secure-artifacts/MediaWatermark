@@ -2,3 +2,6 @@ Pyside6
 pillow
 opencv-python
 numpy
+packaging
+requests
+ffmpeg-python
