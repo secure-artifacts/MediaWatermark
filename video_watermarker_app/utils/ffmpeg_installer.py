@@ -6,7 +6,16 @@ if sys.platform == "win32":
     import winreg
 import shutil
 import urllib.request
+import ssl
 from pathlib import Path
+
+# Fix macOS SSL certificate verification error
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
 from video_watermarker_app.utils.logger import logger
 from video_watermarker_app.utils.common import check_ffmpeg
