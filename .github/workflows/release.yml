@@ -61,15 +61,7 @@ jobs:
           path: dist/MediaWatermark-Windows-Setup.exe
 
   build-macos:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: macos-13
-            arch: x86_64
-          - os: macos-latest
-            arch: arm64
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     permissions:
       id-token: write
       contents: write
@@ -111,10 +103,10 @@ jobs:
             --icon "MediaWatermark.app" 200 190 \
             --hide-extension "MediaWatermark.app" \
             --app-drop-link 600 185 \
-            "MediaWatermark-macOS-${{ matrix.arch }}.dmg" \
+            "MediaWatermark-macOS-arm64.dmg" \
             "dist/MediaWatermark.app" || true
           
-          if [ ! -f "MediaWatermark-macOS-${{ matrix.arch }}.dmg" ]; then
+          if [ ! -f "MediaWatermark-macOS-arm64.dmg" ]; then
             echo "DMG creation failed!"
             exit 1
           fi
@@ -122,13 +114,13 @@ jobs:
       - name: Attest macOS DMG
         uses: actions/attest-build-provenance@v2
         with:
-          subject-path: "MediaWatermark-macOS-${{ matrix.arch }}.dmg"
+          subject-path: "MediaWatermark-macOS-arm64.dmg"
 
       - name: Upload macOS Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: MediaWatermark-macOS-${{ matrix.arch }}
-          path: "MediaWatermark-macOS-${{ matrix.arch }}.dmg"
+          name: MediaWatermark-macOS-arm64
+          path: "MediaWatermark-macOS-arm64.dmg"
 
   release:
     needs: [build-windows, build-macos]
